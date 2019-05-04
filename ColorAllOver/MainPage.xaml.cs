@@ -38,6 +38,7 @@ namespace ColorAllOver
             {
                 GenerateColorsInGridView();
             }
+            InfluencerBrush.AddInfluencerBrush();
         }
 
         private void GenerateColorsInGridView()
