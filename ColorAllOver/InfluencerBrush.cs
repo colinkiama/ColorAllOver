@@ -21,7 +21,7 @@ namespace ColorAllOver
             
             var visual = _compositor.CreateSpriteVisual();
             visual.Brush = CreateInfluencerBrush();
-            //visual.Brush = _compositor.CreateBackdropBrush();
+
             visual.Size = new System.Numerics.Vector2((float)Window.Current.Bounds.Width, (float)Window.Current.Bounds.Height);
             var container = _compositor.CreateContainerVisual();
             container.Children.InsertAtTop(visual);
@@ -31,7 +31,7 @@ namespace ColorAllOver
         private static CompositionBrush CreateInfluencerBrush()
         {
             Matrix5x4 grayscaleMatrix = CreateGrayscaleMatrix();
-
+            
 
 
 
@@ -53,8 +53,11 @@ namespace ColorAllOver
             
         }
 
+
+
         private static Matrix5x4 CreateGrayscaleMatrix()
         {
+            // Microsoft official Grayscale
             var matrix = new Matrix5x4
             {
                 M11 = 0.333f,
@@ -79,36 +82,11 @@ namespace ColorAllOver
                 M54 = 0
             };
 
-            return matrix;
-        }
-
-        private static Matrix5x4 CreateBlackAndWhiteMatrix()
-        {
-            var matrix = new Matrix5x4();
-            
-            matrix.M11 = 1.5f;
-            matrix.M12 = 1.5f;
-            matrix.M13 = 1.5f;
-            matrix.M14 = 0;
-
-
-            matrix.M21 = 1.5f;
-            matrix.M22 = 1.5f;
-            matrix.M23 = 1.5f;
-            matrix.M24 = 0;
-
-            matrix.M31 = 1.5f;
-            matrix.M32 = 1.5f;
-            matrix.M33 = 1.5f;
-            matrix.M34 = 0;
-
-            matrix.M51 = -1;
-            matrix.M52 = -1;
-            matrix.M53 = -1;
-            matrix.M54 = 1;
 
             return matrix;
         }
+
+       
 
 
     }
