@@ -69,29 +69,14 @@ namespace ColorAllOver
 
         private static Matrix5x4 CreateGrayscaleMatrix()
         {
-            // Microsoft official Grayscale
+            // Microsoft's Grayscale Matrix from Win2D Documentation
             var matrix = new Matrix5x4
             {
-                M11 = 0.333f,
-                M12 = 0.333f,
-                M13 = 0.333f,
-                M14 = 0,
-                M21 = 0.333f,
-                M22 = 0.333f,
-                M23 = 0.333f,
-                M24 = 0,
-                M31 = 0.333f,
-                M32 = 0.333f,
-                M33 = 0.333f,
-                M34 = 0,
-                M41 = 0,
-                M42 = 0,
-                M43 = 0,
-                M44 = 1,
-                M51 = 0,
-                M52 = 0,
-                M53 = 0,
-                M54 = 0
+                M11 = 0.333f, M12 = 0.333f, M13 = 0.333f, M14 = 0,
+                M21 = 0.333f, M22 = 0.333f, M23 = 0.333f, M24 = 0,
+                M31 = 0.333f, M32 = 0.333f, M33 = 0.333f, M34 = 0,
+                M41 = 0, M42 = 0, M43 = 0, M44 = 1,
+                M51 = 0, M52 = 0, M53 = 0, M54 = 0
             };
 
 
