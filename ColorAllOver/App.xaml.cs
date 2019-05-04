@@ -69,6 +69,7 @@ namespace ColorAllOver
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
                 // Ensure the current window is active
+                GrayscaleMakeover.GoBlackAndWhite();
                 Window.Current.Activate();
             }
         }

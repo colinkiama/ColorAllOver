@@ -38,6 +38,7 @@ namespace ColorAllOver
             {
                 GenerateColorsInGridView();
             }
+            
         }
 
         private void GenerateColorsInGridView()
