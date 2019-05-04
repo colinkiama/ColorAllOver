@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
@@ -12,29 +13,41 @@ using Windows.UI.Xaml.Hosting;
 
 namespace ColorAllOver
 {
-    public class InfluencerBrush
+    public class GrayscaleMakeover
     {
-        static Compositor _compositor = Window.Current.Compositor;
+        private static SpriteVisual _grayscaleVisual;
+        private static Compositor _compositor = Window.Current.Compositor;
 
-        public static void AddInfluencerBrush(Panel panel)
+        public static void GoBlackAndWhite()
         {
-            
-            var visual = _compositor.CreateSpriteVisual();
-            visual.Brush = CreateInfluencerBrush();
 
-            visual.Size = new System.Numerics.Vector2((float)Window.Current.Bounds.Width, (float)Window.Current.Bounds.Height);
+            _grayscaleVisual = _compositor.CreateSpriteVisual();
+            _grayscaleVisual.Brush = CreateGrayscaleBrush();
+
+            UpdateVisualSize();
+
+            Window.Current.SizeChanged += Current_SizeChanged;
             var container = _compositor.CreateContainerVisual();
-            container.Children.InsertAtTop(visual);
+            container.Children.InsertAtTop(_grayscaleVisual);
+            
             ElementCompositionPreview.SetElementChildVisual(Window.Current.Content,container);
         }
+
+        private static void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            UpdateVisualSize();
             
-        private static CompositionBrush CreateInfluencerBrush()
+        }
+
+        private static void UpdateVisualSize()
+        {
+            _grayscaleVisual.Size = new Vector2((float)Window.Current.Bounds.Width, (float)Window.Current.Bounds.Height);
+        }
+
+        private static CompositionBrush CreateGrayscaleBrush()
         {
             Matrix5x4 grayscaleMatrix = CreateGrayscaleMatrix();
             
-
-
-
             ColorMatrixEffect grayscaleMatrixEffect = new ColorMatrixEffect
             {
                 ColorMatrix = grayscaleMatrix,
@@ -46,7 +59,6 @@ namespace ColorAllOver
             CompositionEffectFactory grayscaleEffectFactory = _compositor.CreateEffectFactory(grayscaleMatrixEffect);
             var backdropBrush = grayscaleEffectFactory.CreateBrush();
             backdropBrush.SetSourceParameter("source", _compositor.CreateBackdropBrush());
-
 
             return backdropBrush;
             
